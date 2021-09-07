@@ -1717,6 +1717,11 @@ table@^6.0.4:
     slice-ansi "^4.0.0"
     string-width "^4.2.0"
 
+tailwindcss-rtl@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/tailwindcss-rtl/-/tailwindcss-rtl-0.7.3.tgz#d8d3236e446fd7504d9240366aea8a5987e66c12"
+  integrity sha512-4lOuA5HJj/a9qBmnPmzdxJybqmQUKhA4/iDBiGs7YZqJ7eqSziKR035er3ZhGOl08s3FaKwlgNPlgQ13vMs/Tw==
+
 text-table@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"

@@ -3,6 +3,8 @@
 @layer base {
 	html,
 	body {
+		
+		direction:rtl;
 		@apply bg-gray-200 dark:bg-gray-900 dark:text-gray-300 h-full max-h-full;
 	}
 	#app {
@@ -10,6 +12,9 @@
 	}
 	a {
 		@apply text-blue-500 hover:text-pink-500 dark:text-pink-500 dark:hover:text-indigo-500;
+	}
+	*{
+		font-family: 'Vazir', sans-serif;
 	}
 }
 @tailwind components;

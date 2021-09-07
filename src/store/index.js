@@ -2,10 +2,11 @@ import { createStore } from "vuex";
 import axios from "axios";
 export const ITEMS_PER_PAGE = 10;
 
-axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
+// axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 
 const api = axios.create({
-  baseURL: "https://virgool.io/api/v1.4",
+  baseURL: " https://api.rss2json.com/v1/api.json?rss_url=https://virgool.io/feed/",
+
 });
 
 async function* asyncGetter(data) {
@@ -64,20 +65,20 @@ export default createStore({
       context.commit("setLoading", true);
       // make the request
       // let resp = await api.get(`${this.state.topic}stories.json?limitToFirst=${ITEMS_PER_PAGE * curPage}&orderBy="$key"`);
-      let resp = await api.get(`feeds?type=latest&page=1`, {
-        headers: {
-          // remove headers
-        },
-      });
-      console.log(resp);
+      let resp = await api.get(`topic/استارتاپ` );
+      console.log(curPage);
       // slice data
-      let result = resp.data.slice(
-        (curPage - 1) * ITEMS_PER_PAGE,
-        ITEMS_PER_PAGE * curPage
-      );
+      // let result = resp.data.items.slice(
+      //   (curPage - 1) * ITEMS_PER_PAGE,
+      //   ITEMS_PER_PAGE * curPage
+      // );  
+      let result = resp.data.items ;
+
+      console.log(result)
       if (result.length === 0) context.commit("setEndPagination", true);
       else
-        for await (let item of asyncGetter(result)) {
+        // for await (let item of asyncGetter(result)) {
+        for  (let item of result) {
           items.push(item);
         }
 
