@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build  --base=/pnews "
   },
   "dependencies": {
     "axios": "^0.21.1",

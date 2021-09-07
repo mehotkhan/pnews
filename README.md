@@ -1,4 +1,4 @@
-# vHnews
+# pNews
 
 VueJS is rising as one of the most popular front end framework, compared with React (supported by Facebook) and Angular (from Google). Recently, it has been updated to version 3 with many new exciting features. The proejct is created for learning & experimenting purpose and to explore the new features of Vue 3.
 
@@ -8,7 +8,7 @@ VueJS is rising as one of the most popular front end framework, compared with Re
 
 ## The Demo
 
-- [Live Site](https://hnews.techika.com/)
+- [Live Site](https://mehotkhan.github.io/pnews)
 
 ## The Tuorials
 
