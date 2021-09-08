@@ -1,5 +1,5 @@
 <template>
-  <div id="container" class="md:container md:mx-auto px-5 text-left py-10">
+  <div id="container" class="md:container md:mx-auto px-5 text-right py-10">
     <div class="flex flex-col">
       <h1
         class="
@@ -17,7 +17,7 @@
         <div class="text-pink-600 dark:text-yellow-200 text-xl">
           <span
             :ref="`topic-${topic.key}`"
-            class="tab mr-3 cursor-pointer font-sans text-sm md:text-lg"
+            class="tab mr-3 cursor-pointer text-sm md:text-lg"
             v-for="topic in topics"
             :key="topic.key"
             @click="loadStories(topic.key, $event)"
@@ -65,19 +65,20 @@
             "
             v-if="!loading"
           >
-            Load more
+            صفحه بعد
           </button>
           <Skeleton v-else quantity="10"></Skeleton>
           <span
             class="animate-ping text-red-500 dark:text-pink-200"
             v-show="loading"
-            >Loading ...</span
+            >آپدیت ...</span
           >
         </div>
       </div>
     </div>
-    <div class="mt-6 text-base leading-6 font-bold text-center">
-      © 2020 Made with 🧡 by <a href="https://techika.com">Truong Phan</a>
+    <div class="mt-6 text-gray leading-3 text-center">
+      همه چیز به طور شگفت انگیزی خوب باید باشد ، طراحی و توسعه توسط
+      <a href="https://alizemani.ir"> علی زِمانی</a> ❤️
     </div>
   </div>
 </template>
@@ -93,12 +94,12 @@ export default {
   data() {
     return {
       topics: [
-        { key: "top", title: "Top", icon: "🔥" },
-        { key: "best", title: "Best", icon: "👍" },
-        { key: "new", title: "New", icon: "✨" },
-        { key: "ask", title: "Ask", icon: "🙋" },
-        { key: "show", title: "Show", icon: "📰" },
-        { key: "job", title: "Jobs", icon: "💼" },
+        { key: "new", title: "جدیدترین", icon: "" },
+        { key: "top", title: "مطالب داغ", icon: "" },
+        { key: "science", title: "دانش", icon: "" },
+        { key: "it", title: "آی‌تی", icon: "" },
+        { key: "economy", title: "اقتصاد", icon: "" },
+        { key: "book", title: "کتاب", icon: "" },
       ],
     };
   },
@@ -106,17 +107,17 @@ export default {
     ...mapState(["items", "loading", "endPagination", "page"]),
   },
   created() {
-    if (!("topic" in localStorage)) localStorage.topic = "top";
+    if (!("topic" in localStorage)) localStorage.topic = "new";
     this.loadStories(localStorage.topic);
-    if (!("theme" in localStorage)) localStorage.theme = "dark";
+    if (!("theme" in localStorage)) localStorage.theme = "white";
   },
   mounted() {
     this.toggleDarkMode(localStorage.theme);
     this.$refs[`topic-${localStorage.topic}`].classList.add("text-green-500");
-    window.onscroll = () => {
-      window.innerHeight + window.scrollY >= document.body.offsetHeight &&
-        this.handleScroll();
-    };
+    // window.onscroll = () => {
+    //   window.innerHeight + window.scrollY >= document.body.offsetHeight &&
+    //     this.handleScroll();
+    // };
   },
   methods: {
     handleScroll() {
@@ -127,7 +128,7 @@ export default {
       const setLight = () => {
         htmlElm.classList.remove("dark");
         localStorage.theme = "light";
-        this.$refs.toggleDark.textContent = "🌙";
+        this.$refs.toggleDark.textContent = "☀️";
       };
       const setDark = () => {
         htmlElm.classList.add("dark");

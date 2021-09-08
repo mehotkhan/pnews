@@ -5,50 +5,35 @@
       v-for="item in items"
       :key="item"
     >
-      <div v-if="item" class="flex flex-wrap">
-        <a
-          v-if="item.url"
-          class="
-            flex-auto
-            text-gray-700
-            hover:text-pink-500
-            dark:text-indigo-400
-            dark:hover:text-pink-400
-          "
-          target="_blank"
-          :href="
-            item.url
-              ? item.url
-              : `https://news.ycombinator.com/item?id=${item.id}`
-          "
-          >{{ item.title }}</a
-        >
-        <a
-          v-else
-          class="
-            flex-auto
-            text-gray-700
-            hover:text-pink-500
-            dark:text-indigo-400
-            dark:hover:text-pink-400
-          "
-          target="_blank"
-          @click="openModal(item)"
-          >{{ item.title }}</a
-        >
-
-        <div class="text-sm text-gray-400">
+      <div v-if="item" class="flex flex-wrap flex-row-reverse">
+        <div class="text-sm text-gray-400 mt-2">
           توسط
-          <span class="italic font-medium dark:text-white">{{
-            item.author
-          }}</span>
+          <span class="italic font-medium dark:text-white">
+            {{ item.author }}
+          </span>
           از
-          <span class="italic font-medium dark:text-white">{{
-            parseTime(item.pubDate)
-          }}</span>
+          <span class="italic font-medium dark:text-white">
+            {{ parseTime(item.pubDate) }}
+          </span>
         </div>
+        <a
+          class="
+            flex-auto
+            mt-3
+            text-gray-700
+            hover:text-pink-500
+            dark:text-indigo-400
+            dark:hover:text-pink-400
+          "
+          target="_blank"
+          :href="item.link"
+          >{{ item.title }}</a
+        >
         <div class="w-full text-sm flex-none mt-2">
-          <div class="flex text-gray-500 dark:text-green-200">
+          <p class="flex-auto text-black-700 mt-2 mb-3">
+            {{ item.description }}
+          </p>
+          <div class="flex text-gray-500 dark:text-green-200 flex-row-reverse">
             <svg
               class="flex-shrink-0 h-5 w-5 text-cyan-500 mr-1"
               xmlns="http://www.w3.org/2000/svg"
@@ -65,10 +50,10 @@
             </svg>
             <a
               class="mr-2 dark:text-green-200"
-              :href="`https://news.ycombinator.com/item?id=${item.id}`"
+              :href="`${item.link}#app-root-comments`"
               target="blank"
             >
-              {{ item.descendants }} دیدگاه
+              دیدگاه
             </a>
             <svg
               class="flex-shrink-0 h-5 w-5 text-cyan-500 mr-1"
@@ -97,7 +82,7 @@
       >
         <div class="w-full">
           <div class="flex flex-col flex-grow">
-            <div class="pl-4 pr-4 pt-1 mb-1 text-left relative flex-grow">
+            <div class="pl-4 pr-4 pt-1 mb-1 text-right relative flex-grow">
               <h3 class="text-lg font-bold text-gray-darkest mr-10">
                 <span
                   class="
@@ -155,6 +140,42 @@
 </template>
 <script>
 import * as timeago from "timeago.js";
+
+const toPersianNumber = (number) => {
+  // List of standard persian numbers from 0 to 9
+  const persianDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+
+  return number.toString().replace(/\d/g, (x) => persianDigits[x]);
+};
+var locale = function (number, index, totalSec) {
+  // number: the time ago / time in number;
+  // index: the index of array below;
+  // totalSec: total seconds between date to be formatted and today's date;
+  const formattedString = [
+    ["لحظاتی پیش", "همین حالا"],
+    ["%s ثانیه پیش", "%s ثانیه دیگر"],
+    ["۱ دقیقه پیش", "۱ دقیقه دیگر"],
+    ["%s دقیقه پیش", "%s دقیقه دیگر"],
+    ["۱ ساعت پیش", "۱ ساعت دیگر"],
+    ["%s ساعت پیش", "%s ساعت دیگر"],
+    ["۱ روز پیش", "۱ روز دیگر"],
+    ["%s روز پیش", "%s روز دیگر"],
+    ["۱ هفته پیش", "۱ هفته دیگر"],
+    ["%s هفته پیش", "%s هفته دیگر"],
+    ["۱ ماه پیش", "۱ ماه دیگر"],
+    ["%s ماه پیش", "%s ماه دیگر"],
+    ["۱ سال پیش", "۱ سال دیگر"],
+    ["%s سال پیش", "%s سال دیگر"],
+  ][index];
+
+  // We convert regular numbers (%s) to standard persian numbers using toPersianNumber function
+  return [
+    formattedString[0].replace("%s", toPersianNumber(number)),
+    formattedString[1].replace("%s", toPersianNumber(number)),
+  ];
+};
+timeago.register("fa_IR", locale);
+
 import Modal from "./Modal.vue";
 import Skeleton from "./Skeleton.vue";
 export default {
@@ -171,7 +192,7 @@ export default {
   },
   methods: {
     parseTime(t) {
-      return timeago.format(t * 1000);
+      return timeago.format(new Date(t), "fa_IR");
     },
     openModal(item) {
       this.modalItem = item;
