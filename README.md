@@ -1,17 +1,17 @@
-# pNews
+<div dir="rtl">
 
-VueJS is rising as one of the most popular front end framework, compared with React (supported by Facebook) and Angular (from Google). Recently, it has been updated to version 3 with many new exciting features. The proejct is created for learning & experimenting purpose and to explore the new features of Vue 3.
+# یک خبرخوان ساده و جمع و جور برای مطالب فارسی
 
-## Build Status
+- یک اسکریپت جم استک است که از طریق سورس های مختلف RSS از منابع مختلف فارسی و همینطور امتیاز دهی و تعامل کابران به عناوین بر اساس دیتابیس های P2P
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/d7ba5a3d-962d-4e8d-8fbb-4513390e4f17/deploy-status)](https://app.netlify.com/sites/vhnews/deploys)
+- ایده اصلی برای UI بر اساس وبسایت [ هکر نیوز](https://news.ycombinator.com/news)
+  است.
+- این کد در حال توسعه است !!
 
-## The Demo
+- [یک خبرخوان ساده و جمع و جور برای مطالب فارسی](https://mehotkhan.github.io/pnews)
 
-- [Live Site](https://mehotkhan.github.io/pnews)
+# منابع RSS :
 
-## The Tuorials
+- [ جایی برای نوشتن و خواندن - ویرگول](https://virgool.io/)
 
-- [Part 1](https://techika.com/2021/01/09/build-hackernews-reader-vuejs-tailwind-p1/)
-- [Part 2](https://techika.com/2021/01/16/build-hackernews-reader-vuejs-tailwind-p2/)
-- [Part 3](https://techika.com/2021/05/29/build-hackernews-reader-vuejs-tailwind-p3/)
+ </div>
